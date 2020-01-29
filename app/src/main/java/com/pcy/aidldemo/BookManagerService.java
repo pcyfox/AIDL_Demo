@@ -42,6 +42,25 @@ public class BookManagerService extends Service {
     }
 
     @Override
+    public boolean onUnbind(Intent intent) {
+        Log.d(TAG, "onUnbind() called with: intent = [" + intent + "]");
+        return super.onUnbind(intent);
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy() called");
+        super.onDestroy();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], flags = [" + flags + "], startId = [" + startId + "]");
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+
+    @Override
     public IBinder onBind(Intent intent) {
         return binder;
     }

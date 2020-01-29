@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private int id = 0;
     private IBookManager manager;
+    private Intent startSrviceIntent;
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBind(View view) {
-        bindService(new Intent().setAction("com.example.service.book").setPackage(this.getPackageName()), serviceConnection, Context.BIND_AUTO_CREATE);
+        startSrviceIntent = new Intent().setAction("com.example.service.book").setPackage(this.getPackageName());
+        bindService(startSrviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     public void onAdd(View view) {
@@ -50,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void onStopService(View view) {
+        if (startSrviceIntent == null) return;
+        stopService(startSrviceIntent);
+    }
+
+    public void onUnbindService(View view) {
+        if (serviceConnection == null) return;
+        unbindService(serviceConnection);
     }
 
 }
