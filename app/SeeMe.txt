@@ -1,0 +1,6 @@
+将Java文件编译成class文件
+javac  -cp /Users/pcyfox/Library/Android/sdk/platforms/android-28/android.jar  ClassLoaderTest.java
+
+合并class文件为dex文件（所有的.class文件必须放在对应的java文件中声明的包名目录下，第二参数就是这个目录的根目录）
+dx --dex --output=/Users/pcyfox/AndroidProjects/AIDL_Demo/app/src/main/java/com/pcy/aidldemo/dex/demo.dex      /Users/pcyfox/AndroidProjects/AIDL_Demo/app/src/main/java/com/pcy/aidldemo/clases
+

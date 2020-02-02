@@ -37,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ClassLoader classLoader = getClassLoader();
+        while (classLoader != null) {
+            Log.d(TAG, "onCreate classLoader: "+classLoader);
+            classLoader = classLoader.getParent();
+            Log.d(TAG, "onCreate classLoader Parent: "+classLoader);
+        }
     }
 
     public void onBind(View view) {
@@ -62,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
     public void onUnbindService(View view) {
         if (serviceConnection == null) return;
         unbindService(serviceConnection);
+    }
+
+    public void onStartService(View view){
+        if (startSrviceIntent == null) return;
+        startService(startSrviceIntent);
     }
 
 }

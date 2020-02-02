@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.pcy.aidldemo.model.Book;
 
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -56,7 +57,7 @@ public class BookManagerService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand() called with: intent = [" + intent + "], flags = [" + flags + "], startId = [" + startId + "]");
-        return super.onStartCommand(intent, flags, startId);
+        return Service.START_STICKY;
     }
 
 
